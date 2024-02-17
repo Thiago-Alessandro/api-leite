@@ -7,17 +7,25 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Venda {
+@Data
+public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private Integer quantidade;
+    @NonNull
+    private String state;
+    @NonNull
+    private String city;
+    @NonNull
+    private String street;
+    @NonNull
+    private Integer number;
 
 }

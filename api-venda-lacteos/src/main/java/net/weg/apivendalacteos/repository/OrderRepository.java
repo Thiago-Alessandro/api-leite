@@ -1,9 +1,9 @@
 package net.weg.apivendalacteos.repository;
 
-import net.weg.apivendalacteos.model.Venda;
+import net.weg.apivendalacteos.model.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface Vendarepository extends JpaRepository<Venda, Integer> {
+public interface OrderRepository extends JpaRepository<Order, Long> {
 }

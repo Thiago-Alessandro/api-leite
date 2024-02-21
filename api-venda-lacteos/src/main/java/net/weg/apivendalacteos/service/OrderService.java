@@ -6,7 +6,6 @@ import net.weg.apivendalacteos.model.ProductBatch;
 import net.weg.apivendalacteos.repository.OrderRepository;
 import net.weg.apivendalacteos.repository.ProductBatchRepository;
 import net.weg.apivendalacteos.repository.UserRepository;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -33,20 +32,19 @@ public class OrderService {
 
         order.setUser(userRepository.findById(order.getUser().getId()).get());
 
-        Collection<ProductBatch> productBatches = new ArrayList<>();
-
-        order.getProductBatches().stream()
-                .forEach(productBatch -> productBatches.add(productBatchRepository.findById(productBatch.getId()).get()));
-
-
-        order.setProductBatches(productBatches);
+//        Collection<ProductBatch> productBatches = new ArrayList<>();
+//
+//        order.getProductBatches()
+//                .forEach(productBatch -> productBatches.add(productBatchRepository.findById(productBatch.getId()).get()));
+//
+//
+//        order.setProductBatches(productBatches);
 
 
 //        Order savedOrder = orderRepository.save(order);
-        order.setPrice(order.getProductBatches().stream()
-                .mapToDouble(productBatch -> productBatch.getQuantity() * productBatch.getUnitPrice())
-                .sum()
-        );
+        order.setPrice(order.getProductBatch().getProduct().getPrice() * order.getProductBatch().getProductQuantity());
+        System.out.println(order.getPrice());
+
         return orderRepository.save(order);
     }
 

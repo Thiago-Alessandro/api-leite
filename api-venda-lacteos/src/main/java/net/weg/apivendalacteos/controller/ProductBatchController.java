@@ -32,6 +32,11 @@ public class ProductBatchController {
         return productBatchService.update(productBatch);
     }
 
+    @GetMapping("/product/{id}")
+    public Collection<ProductBatch> getProductbatchesByProductId(@PathVariable Integer id){
+        return productBatchService.findByProductId(id);
+    }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
         productBatchService.delete(id);

@@ -22,11 +22,12 @@ public class User {
 
     private String name;
     @NonNull
+    @Column(unique = true)
     private String email;
     @NonNull
     private String password;
     @OneToMany(cascade = CascadeType.ALL)
-    private Collection<Address> address;
+    private Collection<Address> addresses;
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private Collection<Order> orders;

@@ -33,4 +33,8 @@ public class ProductBatchService {
         productBatchRepository.deleteById(id);
     }
 
+    public Collection<ProductBatch> findByProductId(Integer id){
+        return productBatchRepository.findProductBatchByProductId(id);
+    }
+
 }

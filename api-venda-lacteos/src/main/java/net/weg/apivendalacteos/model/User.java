@@ -21,10 +21,9 @@ public class User {
     private Long id;
 
     private String name;
-    @NonNull
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
-    @NonNull
+    @Column(nullable = false)
     private String password;
     @OneToMany(cascade = CascadeType.ALL)
     private Collection<Address> addresses;
@@ -32,4 +31,13 @@ public class User {
     @JsonIgnore
     private Collection<Order> orders;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

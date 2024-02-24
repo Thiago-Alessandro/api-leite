@@ -20,16 +20,28 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @NonNull
+    @ManyToOne
+    @JoinColumn(nullable = false)
     private ProductBatch productBatch;
-    @NonNull
+    @Column(nullable = false)
     private Double price = 0.0;
     @ManyToOne
-    @NonNull
+    @JoinColumn(nullable = false)
     private User user;
     @ManyToOne
-    @NonNull
+    @JoinColumn(nullable = false)
     private Address address;
 
+    private Boolean demanded = false;
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", price=" + price +
+                ", user=" + user +
+                ", address=" + address +
+                ", demanded=" + demanded +
+                '}';
+    }
 }

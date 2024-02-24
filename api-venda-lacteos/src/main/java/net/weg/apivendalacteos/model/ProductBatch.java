@@ -19,18 +19,18 @@ public class ProductBatch {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
+    @JoinColumn(nullable = false)
     @ManyToOne
     private Product product;
 
 //    @NonNull
 //    private Double unitPrice = 0.0;
-    @NonNull
+    @Column(nullable = false)
     private LocalDate expirationDate;
     private LocalDate fabricationDate;
-    @NonNull
+    @Column(nullable = false)
     private Integer productQuantity = 0;
-    @NonNull
+    @Column(nullable = false)
     private Integer quantityAvailable = 0;
 
 }

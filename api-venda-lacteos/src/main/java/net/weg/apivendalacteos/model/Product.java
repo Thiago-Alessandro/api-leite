@@ -20,10 +20,9 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NonNull
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String name;
-    @NonNull
+    @Column(nullable = false)
     private Double price;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -33,15 +32,15 @@ public class Product {
     @JsonIgnore
     private Collection<ProductBatch> batches;
 
-    public void setImage(MultipartFile picture) {
+    public void setImage(MultipartFile image) {
         File file = new File();
         try {
-            file.setData(picture.getBytes());
+            file.setData(image.getBytes());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        file.setName(picture.getOriginalFilename());
-        file.setType(picture.getContentType());
+        file.setName(image.getOriginalFilename());
+        file.setType(image.getContentType());
         this.image = file;
     }
 }

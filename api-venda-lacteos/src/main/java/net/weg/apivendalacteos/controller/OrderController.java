@@ -25,6 +25,8 @@ public class OrderController {
     }
     @PostMapping()
     public Order create(@RequestBody Order order){
+        System.out.println("controller");
+        System.out.println(order);
         return vendaService.create(order);}
 
 
@@ -36,6 +38,17 @@ public class OrderController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
         vendaService.delete(id);
+    }
+
+    @GetMapping("/notDemanded")
+    public Collection<Order> findOrdersByDemandedFalse(){
+        System.out.println(vendaService.findOrdersByDemandedFalse());
+        return vendaService.findOrdersByDemandedFalse();
+    }
+
+    @PutMapping("/setDemanded")
+    public void setDemandedTrue(){
+        vendaService.setDemandedTrue();
     }
 
 }

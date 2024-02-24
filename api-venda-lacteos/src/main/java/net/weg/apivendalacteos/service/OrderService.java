@@ -6,6 +6,7 @@ import net.weg.apivendalacteos.model.ProductBatch;
 import net.weg.apivendalacteos.repository.OrderRepository;
 import net.weg.apivendalacteos.repository.ProductBatchRepository;
 import net.weg.apivendalacteos.repository.UserRepository;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class OrderService {
 
     public Order create(Order order){
 
-        order.setUser(userRepository.findById(order.getUser().getId()).get());
+//        order.setUser(userRepository.findById(order.getUser().getId()).get());
 
 //        Collection<ProductBatch> productBatches = new ArrayList<>();
 //
@@ -42,8 +43,15 @@ public class OrderService {
 
 
 //        Order savedOrder = orderRepository.save(order);
-        order.setPrice(order.getProductBatch().getProduct().getPrice() * order.getProductBatch().getProductQuantity());
-        System.out.println(order.getPrice());
+        System.out.println("service");
+        System.out.println(order);
+
+//        order.setProductBatch(productBatchRepository.findById(order.getProductBatch().getId()).get());
+//        order.setUser(userRepository.findById(order.getUser().getId()).get());
+//        System.out.println("setado");
+//        System.out.println(order);
+
+//        order.setPrice(order.getProductBatch().getProduct().getPrice() * order.getProductBatch().getProductQuantity());
 
         return orderRepository.save(order);
     }
@@ -54,6 +62,17 @@ public class OrderService {
 
     public void delete(Long id){
         orderRepository.deleteById(id);
+    }
+
+    public Collection<Order> findOrdersByDemandedFalse(){
+        return orderRepository.findOrdersByDemandedFalse();
+    }
+
+    public void setDemandedTrue(){
+        orderRepository.findAll().forEach(order -> {
+            order.setDemanded(true);
+            orderRepository.save(order);
+        });
     }
 
 }

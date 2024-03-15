@@ -40,9 +40,9 @@ public class ProductController {
         productService.delete(product);
     }
 
-    @PatchMapping("/image/{productId}")
-    public Product patchImage(@PathVariable Long productId, @RequestParam MultipartFile image){
-        return productService.patchImage(productId, image);
-    }
+//    @PatchMapping("/image/{productId}")
+//    public Product patchImage(@PathVariable Long productId, @RequestParam MultipartFile image){
+//        return productService.patchImage(productId, image);
+//    }
 
 }

@@ -29,6 +29,10 @@ public class ProductBatchService {
         return productBatchRepository.save(productBatch);
     }
 
+    public Collection<ProductBatch> createAll(Collection<ProductBatch> productBatches){
+        return productBatchRepository.saveAll(productBatches);
+    }
+
     public void delete(Long id){
         productBatchRepository.deleteById(id);
     }

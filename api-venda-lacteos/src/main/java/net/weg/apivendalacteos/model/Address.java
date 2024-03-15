@@ -27,5 +27,6 @@ public class Address {
     private String street;
     @NonNull
     private Integer number;
+    private String cep;
 
 }

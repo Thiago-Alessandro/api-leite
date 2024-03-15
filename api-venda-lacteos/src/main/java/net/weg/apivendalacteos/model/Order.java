@@ -20,8 +20,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
+    @ManyToOne(optional = false)
     private ProductBatch productBatch;
     @Column(nullable = false)
     private Double price = 0.0;
@@ -42,6 +41,7 @@ public class Order {
                 ", user=" + user +
                 ", address=" + address +
                 ", demanded=" + demanded +
+                ", productBatch=" + productBatch.getProduct().getName() +
                 '}';
     }
 }

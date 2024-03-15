@@ -30,11 +30,11 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product patchImage(Long productId, MultipartFile image){
-        Product product = findById(productId);
-        product.setImage(image);
-        return productRepository.save(product);
-    }
+//    public Product patchImage(Long productId, MultipartFile image){
+//        Product product = findById(productId);
+//        product.setImage(image);
+//        return productRepository.save(product);
+//    }
 
     public void delete(Product product){
         productRepository.delete(product);

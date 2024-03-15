@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import net.weg.apivendalacteos.model.Order;
 import net.weg.apivendalacteos.service.OrderService;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -25,10 +26,9 @@ public class OrderController {
     }
     @PostMapping()
     public Order create(@RequestBody Order order){
-        System.out.println("controller");
-        System.out.println(order);
+//        System.out.println("controller");
+//        System.out.println(order);
         return vendaService.create(order);}
-
 
     @PutMapping()
     public Order update(@RequestBody Order order){

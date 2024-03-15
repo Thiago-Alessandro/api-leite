@@ -32,6 +32,10 @@ public class ProductBatchController {
         return productBatchService.update(productBatch);
     }
 
+    @PostMapping("/all")
+    public Collection<ProductBatch> createAll(@RequestBody Collection<ProductBatch> productBatches){
+        return productBatchService.createAll(productBatches);
+    }
     @GetMapping("/product/{id}")
     public Collection<ProductBatch> getProductbatchesByProductId(@PathVariable Integer id){
         return productBatchService.findByProductId(id);

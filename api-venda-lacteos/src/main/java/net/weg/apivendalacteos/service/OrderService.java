@@ -3,6 +3,7 @@ package net.weg.apivendalacteos.service;
 import lombok.AllArgsConstructor;
 import net.weg.apivendalacteos.model.Order;
 import net.weg.apivendalacteos.model.ProductBatch;
+import net.weg.apivendalacteos.repository.AddressRepository;
 import net.weg.apivendalacteos.repository.OrderRepository;
 import net.weg.apivendalacteos.repository.ProductBatchRepository;
 import net.weg.apivendalacteos.repository.UserRepository;
@@ -20,6 +21,7 @@ public class OrderService {
 
     private UserRepository userRepository;
     private ProductBatchRepository productBatchRepository;
+    private AddressRepository addressRepository;
 
     public Collection<Order> findAll(){
         return orderRepository.findAll();
@@ -27,6 +29,10 @@ public class OrderService {
 
     public Order findOne(Long id){
         return orderRepository.findById(id).get();
+    }
+
+    public Collection<Order> createAll(Collection<Order> orders){
+        return orderRepository.saveAll(orders);
     }
 
     public Order create(Order order){
@@ -40,20 +46,22 @@ public class OrderService {
 //
 //
 //        order.setProductBatches(productBatches);
+        order.setProductBatch(productBatchRepository.findById(order.getProductBatch().getId()).get());
+        order.setUser(userRepository.findById(order.getUser().getId()).get());
+        order.setAddress(addressRepository.findById(order.getAddress().getId()).get());
 
-
-//        Order savedOrder = orderRepository.save(order);
+        Order savedOrder = orderRepository.save(order);
         System.out.println("service");
         System.out.println(order);
+        System.out.println(savedOrder);
 
-//        order.setProductBatch(productBatchRepository.findById(order.getProductBatch().getId()).get());
-//        order.setUser(userRepository.findById(order.getUser().getId()).get());
+
 //        System.out.println("setado");
 //        System.out.println(order);
 
 //        order.setPrice(order.getProductBatch().getProduct().getPrice() * order.getProductBatch().getProductQuantity());
 
-        return orderRepository.save(order);
+        return savedOrder;
     }
 
     public Order update(Order order){

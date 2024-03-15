@@ -25,22 +25,22 @@ public class Product {
     @Column(nullable = false)
     private Double price;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private File image;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    private File image;
 
     @OneToMany(mappedBy = "product")
     @JsonIgnore
     private Collection<ProductBatch> batches;
 
-    public void setImage(MultipartFile image) {
-        File file = new File();
-        try {
-            file.setData(image.getBytes());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        file.setName(image.getOriginalFilename());
-        file.setType(image.getContentType());
-        this.image = file;
-    }
+//    public void setImage(MultipartFile image) {
+//        File file = new File();
+//        try {
+//            file.setData(image.getBytes());
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        file.setName(image.getOriginalFilename());
+//        file.setType(image.getContentType());
+//        this.image = file;
+//    }
 }
